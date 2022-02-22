@@ -46,10 +46,14 @@ exports.get_logs = async (req, res) => {
     }
   );
 
+  const formatted_exercises = exercises.map((exercise) => {
+    return { ...exercise._doc, date: exercise.date_formatted };
+  });
+
   res.json({
     _id: user._id,
     username: user.username,
     count: exercises.length,
-    log: exercises,
+    log: formatted_exercises,
   });
 };
