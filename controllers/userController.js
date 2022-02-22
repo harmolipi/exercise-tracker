@@ -7,7 +7,10 @@ exports.post_create_user = (req, res) => {
   });
   user.save((err) => {
     if (err) return console.log(err);
-    res.send(`user created: ${user.username}`);
+    res.json({
+      username: user.username,
+      id: user._id,
+    });
   });
 };
 
