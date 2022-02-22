@@ -5,7 +5,7 @@ const ExerciseSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   description: { type: String, required: true },
   duration: { type: Number, required: true },
-  date: { type: Date },
+  date: { type: Date, default: Date.now, require: true },
 });
 
 // Virtual for formatted date

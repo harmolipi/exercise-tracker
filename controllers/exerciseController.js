@@ -12,7 +12,7 @@ exports.post_create_exercise = async (req, res) => {
     user: user._id,
     description: req.body.description,
     duration: req.body.duration,
-    date: req.body.date,
+    date: req.body.date || Date.now(),
   });
 
   exercise.save((err) => {
