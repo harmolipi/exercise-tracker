@@ -2,8 +2,14 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 require('dotenv').config();
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const apiRouter = require('./routes/api');
+
+mongoose.connect(process.env.DB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.use(cors());
 app.use(express.static('public'));
