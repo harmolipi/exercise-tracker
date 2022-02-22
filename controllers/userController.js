@@ -1,7 +1,7 @@
 const User = require('../models/user');
 
 exports.post_create_user = (req, res) => {
-  console.log(`Creating: ${req.body.username}`);
+  console.log(`Creating user: ${req.body.username}`);
 
   const user = new User({
     username: req.body.username,
