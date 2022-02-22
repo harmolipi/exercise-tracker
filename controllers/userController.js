@@ -39,28 +39,30 @@ exports.get_logs = async (req, res) => {
     return res.json(err);
   });
 
-  let exercises = await Exercise.find({ user: req.params._id }).catch((err) => {
-    console.log(err);
-    return res.json(err);
-  });
+  let exercises = Exercise.find().where({ user: req.params._id });
 
   if (req.query.from) {
     console.log(`From: ${req.query.from}`);
     const from = new Date(req.query.from);
-    exercises = exercises.filter((ex) => ex.date >= from);
+    exercises = exercises.where('date').gte(from);
   }
 
   if (req.query.to) {
     console.log(`To: ${req.query.to}`);
     const to = new Date(req.query.to);
-    exercises = exercises.filter((ex) => ex.date <= to);
+    exercises = exercises.where('date').lte(to);
   }
 
   if (req.query.limit) {
     console.log(`Limit: ${req.query.limit}`);
     const limit = parseInt(req.query.limit);
-    exercises = exercises.slice(0, limit);
+    exercises = exercises.limit(limit);
   }
+
+  exercises = await exercises.exec().catch((err) => {
+    console.log(err);
+    return res.json(err);
+  });
 
   const formatted_exercises = exercises.map((exercise) => {
     return { ...exercise._doc, date: exercise.date_formatted };
