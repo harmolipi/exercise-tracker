@@ -1,5 +1,10 @@
 const User = require('../models/user');
 
+exports.get_users = async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+};
+
 exports.post_create_user = (req, res) => {
   console.log(`Creating user: ${req.body.username}`);
 
