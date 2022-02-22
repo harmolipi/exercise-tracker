@@ -14,7 +14,10 @@ exports.post_create_exercise = async (req, res) => {
   });
 
   exercise.save((err) => {
-    if (err) return console.log(err);
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    }
 
     console.log(`Exercise '${exercise.description}' created successfully!`);
 
