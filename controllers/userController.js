@@ -19,10 +19,7 @@ exports.post_create_user = (req, res) => {
     }
     console.log(`User '${user.username}' created successfully!`);
 
-    res.json({
-      username: user.username,
-      id: user._id,
-    });
+    res.json(user);
   });
 };
 
