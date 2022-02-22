@@ -2,12 +2,11 @@ const User = require('../models/user');
 const Exercise = require('../models/exercise');
 
 exports.post_create_exercise = async (req, res) => {
-  console.log(
-    `Creating exercise: ${req.body.description} for user ${req.params.id}`
-  );
-
+  console.log('User id is: ', req.params.id);
   const user = await User.findById(req.params.id);
-  console.log('user: ', user._id, user.username);
+  console.log(
+    `Creating exercise: ${req.body.description} for user ${user._id}, ${user.username}`
+  );
 
   const exercise = new Exercise({
     user: user._id,
