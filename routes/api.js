@@ -7,6 +7,6 @@ const exercise_controller = require('../controllers/exerciseController');
 router.get('/users/:id/logs', user_controller.get_logs);
 router.get('/users', user_controller.get_users);
 router.post('/users', user_controller.post_create_user);
-router.post('/users/:id/exercises', exercise_controller.post_create_exercise);
+router.post('/users/:_id/exercises', exercise_controller.post_create_exercise);
 
 module.exports = router;
